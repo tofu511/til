@@ -3,7 +3,7 @@
 `mysql/init`ディレクトリに初期化用のSQLやスクリプトを置き、volumeで`/docker-entrypoint.initdb.d/`に渡すとよい。
 
 イメージ
-```
+```yaml
 version: "3"
 services:
   db:
