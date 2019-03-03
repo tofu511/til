@@ -17,7 +17,7 @@ services:
 ### 初期化時の注意点
 - docker-entrypoint-initdb.d内に配置したsqlでDBの作成とユーザーへの権限の付与を行おうとする場合、権限の付与がうまくいかないことがある。その場合は`MYSQL_DATABASE` `MYSQL_USER` `MYSQL_PASSWORD`でユーザーとデータベースを作成するとユーザーに権限が付与される
 
-```
+```bash
 if [ "$MYSQL_USER" -a "$MYSQL_PASSWORD" ]; then
 	echo "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD' ;" | "${mysql[@]}"
 
