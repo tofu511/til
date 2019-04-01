@@ -41,3 +41,73 @@ task, ok := <- tasks
   - ブロックを避けるにはselectを使う
 - チャネルを閉じるにはclose(chan)を呼ぶ
 - チャネルは何かしらのイベントの通知で使われることがよくある
+
+### チャネルとselect文
+- チャネルが複数ある場合、片方を先に読み込むともう片方がブロックされることがある
+- ブロックする複数のチャネルを同時に並列で待ち受け、データが到着したチャネルから順に取り出して処理をする、あるいはブロックする複数のチャネルの書き込みが完了するのを並列で待ち受け、データが先に送信できたチャネルのみにデータを投入するためには select文 を使う
+```go
+for {
+  select {
+  case data := <- reader:
+    // 読み込んだデータを使用
+  case <- exit:
+    // ループを抜ける
+    break
+  }
+}
+```
+
+### コンテキスト
+- 複雑なロジックの中でも、正しく終了やキャンセル、タイムアウトが実装できるようにする仕組みがコンテキスト
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+)
+
+func main() {
+	fmt.Println("start sub()")
+	// 終了を受け取るための終了関数つきコンテキスト
+	ctx, cancel := context.WithCancel(context.Background())
+	go func() {
+		fmt.Println("sub() is finished")
+		// 終了を通知
+		cancel()
+	}()
+	// 終了を待つ
+	<- ctx.Done()
+	fmt.Println("all tasks are finished")
+}
+```
+
+## システムからの通知
+- システムからの返答を待つためにカーネルのレイヤーでは大きく分けて3つの方法が取られる
+  - OSが何かを準備する時に、それを待っているプロセスがどれかを把握し、準備が終わるまではプロセスを止め、準備ができたらプロセスに処理を戻す(ブロッキング入力)
+  - OSが何かを準備する時に、終わっていなくても即座に処理を返す。返すものが一部だけ準備できていたら、その一部のデータと続きがあることを返す(ノンブロッキング入力)
+  - プロセスが実行中であればプロセスを一時停止し、あらかじめ設定したコールバック関数を呼び出す(シグナル)
+
+### OSからのシグナルをチャネルで受け取る例
+- シグナルはプロセス間通信の手段で、外部からプロセスを中断させるなどの用途で使われる
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
+)
+
+func main() {
+	// サイズが1より小さいチャネルを作成
+	signals := make(chan os.Signal, 1)
+	// SIGINT(Ctrl+C)を受け取る
+	signal.Notify(signals, syscall.SIGINT)
+
+	fmt.Println("Waiting SIGINT(CTRL + C)")
+	<-signals
+	fmt.Println("SIGINT arrived")
+}
+```
