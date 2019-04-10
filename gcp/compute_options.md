@@ -1,11 +1,13 @@
 ## Compute Options
-- 3種類ある
+- 4種類ある
 - Google AppEngine(PaaS)
   - serverless & ops-free
 - Google ComputeEngine(IaaS)
   - OSより上は全てコントロールできる
 - Google KubernetesEngine
   - コンテナを使う場合
+- CloudRun
+  - https://japan.zdnet.com/amp/article/35135525/ 
 
 ### Hosting a Website
 #### Static, No SSL
