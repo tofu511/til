@@ -1,11 +1,9 @@
 class RevealingReferences(data: Seq[Seq[Int]]) {
 	val wheels = wheelify(data)
 	
-	def diameters = {
-		wheels.map { wheel => 
-			wheel.rim + (wheel.tire * 2)
-		}
-	}
+	def diameters = wheels.map (diameter(_))
+
+	def diameter(wheel: Wheel) = wheel.rim + (wheel.tire * 2)
 
 	def wheelify(data: Seq[Seq[Int]]) = {
 		data.map { cell =>
