@@ -57,14 +57,9 @@ class Gear(val chainring: Int, val cog: Int, rim: Int, tire: Int) {
 ### 変更を歓迎するコードを書く
 - 単一責任のクラスを作れば、どんな些細な振る舞いもそれぞれがただ１箇所のみに存在するようになる(DRY)
 - 複雑な構造への直接の参照は混乱を招く
-- `class RevealingReferences`のScala実装例
+- [`class RevealingReferences`のScala実装例](https://github.com/tofu511/til/blob/master/books/%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%8C%87%E5%90%91%E8%A8%AD%E8%A8%88%E5%AE%9F%E8%B7%B5%E3%82%AC%E3%82%A4%E3%83%89/chapter2/RevealingReferences.scala)
 
-
-
-
-
-
-
-
-
-
+### あらゆる箇所を単一責任にする
+- メソッドもクラス同様に単一責任であるべき
+- 変更可能なコードを書き、どうしても変更が必要な時まで決断を先のばすことで、より知識がついた状態で変更することが可能になる
+- 責任がありすぎて混沌としているクラスがあれば、それらの責任は別のクラスに分ける
