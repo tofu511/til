@@ -1,0 +1,1 @@
+class Bicycle(size: String, chain: String = "10-speed", tireSize: Double)

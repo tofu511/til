@@ -1,0 +1,1 @@
+class RoadBike(val size: String, val chain: String, val tireSize: Double = 23,  val tapeColor: String) extends Bicycle(size, chain, tireSize)

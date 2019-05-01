@@ -1,0 +1,1 @@
+class MountainBike(val size: String, val chain: String, val tireSize: Double = 2.1, val rearShock: String) extends Bicycle(size, chain, tireSize)
