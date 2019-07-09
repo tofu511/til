@@ -87,4 +87,56 @@ import JsonWriterInstances._
 implicitly[JsonWriter[String]] // JsonWriter[String]型のJsonWriterInsntacesが返る
 ```
 
+## Implicits
+- 型クラスを扱うにはimplicit valueとimplicit parametersを扱う必要がある
+
+### Implicit Scope
+- コンパイラは以下の範囲を暗黙的に探す
+  - ローカルもしくは継承された定義
+  - importされた定義
+  - 型クラスまたはパラメータ型のコンパニオンオブジェクト
+- コンパイラはimplicitが複数あるとコンパイルエラーを吐く
+```scala
+implicit val writer1: JsonWriter[String] = JsonWriterInstances.stringWriter
+implicit val writer2: JsonWriter[String] = JsonWriterInstances.stringWriter
+
+Json.toJson("A string")
+// <console>:23: error: ambiguous implicit values:
+// both value stringWriter in object JsonWriterInstances of type => JsonWriter[String]
+// and value writer1 of type => JsonWriter[String]
+// match expected type JsonWriter[String]
+// Json.toJson("A string")
+//            ^
+```
+- implicitなものをどこに定義するかはおおよそ4つの方法に分けられる
+  1. JsonWrietrInstancesなどのオブジェクトに配置する => importすることでスコープに入る
+  2. traitに入れる => 継承するとスコープに入る
+  3. 型クラスのコンパニオンオブジェクトに入れる => 常にスコープに入る
+  4. パラメータ型のコンパニオンオブジェクトに入れる => 常にスコープに入る
+
+### Recursive Implicit Resolution
+- 型クラスのインスタンスを定義する方法は2つ
+  - `implicit val`を使う
+  - `implicit def`を使う
+- ただ`implicit val`ではスケールしない時がある
+- 例として`JsonWriter[Option[A]]`を定義するとすると、全ての型に対して`implicit val`を作らないといけなくなる
+```scala
+implicit val optionIntWriter: JsonWriter[Option[Int]] = ???
+
+implicit val optionPersonWriter: JsonWriter[Option[Person]] = ???
+
+// 他にもたくさん必要。。
+```
+- `implicit def`を使うことで`Option[A]`を抽象的に定義することができる
+```scala
+implicit def optionWriter[A](implicit writer: JsonWriter[A]): JsonWriter[Option[A]] = 
+  new JsonWriter[Option[A]] {
+    def write(option: Option[A]): Json = option match {
+      case Some(aValue) => writer.write(aValue)
+      case None => JsNull
+    }
+  }
+```
+  
+  
 
