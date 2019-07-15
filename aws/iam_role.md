@@ -11,6 +11,7 @@
 - AssumeRolePolicyDocument
 
 ## AssumeRoleとは
+- **第三者に自分のAWSアカウントのAPI権限を委譲する仕組み**
 - RoleArnを入力としてCredentialsを返すAPIのこと
 - ロールに設定された権限を持った一時キーを入手する
 
@@ -37,3 +38,4 @@
 ## 参考資料
 - [IAM ロール](https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/id_roles.html)
 - [IAMロール徹底理解 〜 AssumeRoleの正体](https://dev.classmethod.jp/cloud/aws/iam-role-and-assumerole/)
+- [Assume Roleの用途・メリット](https://christina04.hatenablog.com/entry/assume-role)
