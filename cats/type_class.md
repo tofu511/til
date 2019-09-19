@@ -241,5 +241,39 @@ val circles: List[Circle] = ???
 val shapes: List[Shape] = circles
 ```
 
+##### Contracariance(反変)
+- 型パラメータに`-`をつけることで反変になる
+- 反変とは、`A`が`B`の派生型の場合、`F[B]`が`F[A]`の派生型であるという性質
+```scala
+trait JsonWriter[-A] {
+  def write(value: A): Json
+}
+```
+```scala
+val shape: Shape = ???
+val circle: Circle = ???
 
+val shapeWriter: JsonWriter[Shape] = ???
+val circleWriter: JsonWriter[Circle] = ???
+
+def format[A](value: A, writer: JsonWriter[A]): Json = writer.write(value)
+```
+- 上記のようなJsonWriterとShape, Circleクラスがあった場合、反変の性質により、`JsonWriter[Circle]`の場所でshapeWriterが使えるようになる
+
+##### Invariance(非変)
+- `+`も`-`もつかない
+- 非変の場合`F[A]`と`F[B]`はどちらもどちらの派生型ではないことを表す
+
+
+```scala
+sealed trait A
+final case object B extends A
+final case object C extends A
+```
+- 上記のような代数的データ型があった場合、インスタンスとしてsuper typeが使われるか、sub typeが使われるかは変位指定によって異なる
+
+|-  |非変  |共変  |反変|
+|---|---|---|---|
+|super typeのインスタンスが使用される  |No  |No  |Yes |
+|より詳細な型が好まれる  |No  |Yes  |No | 
 
