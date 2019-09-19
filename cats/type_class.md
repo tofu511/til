@@ -137,6 +137,92 @@ implicit def optionWriter[A](implicit writer: JsonWriter[A]): JsonWriter[Option[
     }
   }
 ```
+
+## Meets Cats
+- Catsにおける型クラス
+- `Show`はCatsにおける`Printable`と同等の型クラス
+
+```scala
+package cats
+
+trait Show[A] {
+  def show(value: A): String
+}
+```
+
+### Importing Type Class
+- 型クラスそのもの(ここでいう`Show`)と実装をもつ型クラスインスタンスをインポートする必要がある
+
+### Importing Defalut Instances
+- `cats.instances`パッケージにデフォルト(組み込み型)のインスタンスがあるので、これらをインポートする
+  - ex.
+  - `cats.instances.int`
+  - `cats.instances.list`
+  - `cats.instances.option`
+```scala
+import cats.instances.int._    
+import cats.instances.string._ 
+
+val showInt: Show[Int] = Show.apply[Int] 
+val showString: Show[String] = Show.apply[String]
+
+val intAsString: String = showInt.show(123) // "123"
+val stringAsString: String = showString.show("abc") // "abc"
+```
+
+### Importing Interface Syntax
+- 型クラスの構文(Syntax)は`cats.syntax` パッケージにある
+```scala
+import cats.syntax.show._ 
+
+val shownInt = 123.show // "123"
+val shownString = "abc".show // "abc"
+```
+
+### Importing All The Things!
+- 全てインポートするには以下のようにする
+```scala
+import cats._
+import cats.implicits._
+```
+
+### Defining Custom Instances
+- デフォルトインスタンスに無いクラスはカスタムのインスタンスを作ることで`Show`を使うことができる
+```scala
+import java.util.Date
+
+implicit val dateShow: Show[Date] =
+  new Show[Date] {
+    def show(date: Date): String =
+      s"${date.getTime}ms since the epoch."
+}
+```
+- 上記のようにもできるがCatsでは簡単にカスタムインスタンスを作るためのメソッドがすでに準備されている
+- `Show`のコンパニオンオブジェクトには2つのコンストラクションメソッドがあるので、それを使うことでカスタムインスタンスを作ることができる
+```scala
+object Show {
+  // Convert a function to a `Show` instance:
+  def show[A](f: A => String): Show[A] = ???
   
-  
+  // Create a `Show` instance from a `toString` method:
+  def fromToString[A]: Show[A] = ???
+}
+```
+- 上記のコンストラクションメソッドを使うと以下のようになる
+```scala
+implicit val dateShow: Show[Date] = Show.show(date => s"${date.getTime}ms since the epoch.")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
