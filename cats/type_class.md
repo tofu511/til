@@ -153,7 +153,7 @@ trait Show[A] {
 ### Importing Type Class
 - 型クラスそのもの(ここでいう`Show`)と実装をもつ型クラスインスタンスをインポートする必要がある
 
-### Importing Defalut Instances
+### Importing Default Instances
 - `cats.instances`パッケージにデフォルト(組み込み型)のインスタンスがあるので、これらをインポートする
   - ex.
   - `cats.instances.int`
