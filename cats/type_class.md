@@ -213,16 +213,33 @@ object Show {
 implicit val dateShow: Show[Date] = Show.show(date => s"${date.getTime}ms since the epoch.")
 ```
 
+## Controlling Instance Selection
+- 型クラスを使う上で考えなければならないインスタンス選定(Instance Selection)の2つの課題がある
+  1. インスタンスとして定義した型とその派生型(subtype)の関係性
+    - ex. `JsonWriter[Option[Int]]` を定義した場合、`Json.toJson(Some(1))` が選択される(SomeはOptionの派生型(subtype))
+  2. たくさんの選択肢がある中でどのように型クラスインスタンスを選択するか
+    - ex. `JsonWriter`に対して2つの`Person`型を定義した時、どちらが選択されるか
 
+### Variance(変位)
+- 型クラスを定義する時、変位注釈(変位アノテーション)をつけることで、コンパイラが暗黙的にインスタンス選定(instance selection)できるようになる
 
+#### Covariance(共変)
+- 型パラメータに`+`をつけることで共変になる
+- 共変とは、`B`が`A`の派生型(subtype)の場合、`F[B]`が`F[A]`も派生型(subtype)であるという性質
+- 共変の場合、`F[A] = F[B]`という代入ができるようになる
+- ListやOptionは共変の1つの例
+```scala
+trait List[+A]
+trait Option[+A]
+```
+- Listは共変なので、`A`の派生型(subtype)であれば、代入することができる
+```scala
+sealed trait Shape
+case class Circle(redius: Double) extends Shape
 
-
-
-
-
-
-
-
+val circles: List[Circle] = ???
+val shapes: List[Shape] = circles
+```
 
 
 
