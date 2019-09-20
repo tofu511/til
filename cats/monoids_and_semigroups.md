@@ -42,5 +42,66 @@
 "One" ++ ("Two" ++ "Three") //OneTwoThree
 ```
 
+## Definition of a Monoid
+- `A`のモノイドは以下の要素から成り立つ
+   - `(A, A) => A`という組み合わせ(combine)操作
+   - `A`の空要素
+
+```scala
+trait Monoid[A] {
+  def combine(x: A, y: A): A
+  def empty: A
+}
+```
+
+- またモノイドのcombineとempty操作はいくつかの法則(laws)に従う必要がある
+  - `combine`は結合法則(associative)に、`empty`は単位元の法則に従う
+
+```scala
+def associativeLaw[A](x: A, y: A, x: A)(implicit m: Monoid[A]): Boolean = {
+  m.combine(x, combine(y, z)) == m.combine(m.combine(x, y), z)
+}
+
+def identityLaw[A](x: A)(implicit m: Monoid[A]): Boolean = {
+  (m.combine(x, m.empty) == x) && (m.combine(m.empty, x) == x)
+}
+```
+
+- 引き算は結合法則が成り立たないのでモノイドではない
+
+```scala
+(1 - 2) - 3 // -4
+1 - (2 - 3) // 2
+```
+
+## Definition of a Semigroup
+- Semigroup(半群)は、モノイドの結合(combine)部分のこと
+- 多くのSemigroupはモノイドだが、Semigroupのデータ型の中には空要素(empty element)を定義できないものもある
+  - 例えば、空の要素を認めないnon-emptyなSequenceや正の数が制限された場合などは、`empty`を定義できない
+  - Catsの`NonEmptyList`はSemigroupの実装だが、モノイドの実装ではない
+
+```scala
+trait Semigroup[A] {
+  def combine(x: A, y: A): A
+}
+
+trait Monoid[A] extends Semigroup[A] {
+  def empty: A
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
