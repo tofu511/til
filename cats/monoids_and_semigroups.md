@@ -89,11 +89,42 @@ trait Monoid[A] extends Semigroup[A] {
   def empty: A
 }
 ```
+## Monoids in Cats
+### The Monoid Type Class
+- Monoidの型クラスは`cats.kernel.Monoid`で、`cats.Monoid`はそのエイリアス
 
+### Monoid Instances
+- `cats.instances`パッケージにある
+- データ型によってパッケージが異なる
 
+```scala
+import cats.Monoid
+import cats.instances.string._
 
+Monoid[String].combine("Hello", "World") //Hello World
+Monoid[String].empty // ""
+```
 
+- Optionを使う場合Option内のデータ型と合わせてインポートする
 
+```scala
+import cats.Monoid
+import cats.instances.int._
+import cats.instances.option._
+
+Monoid[Option[Int]].combine(Option(10), Option(20)) // Some(30)
+```
+
+### Monoid Syntax
+- catsはcombineメソッドのSyntax(`|+|`)を用意している
+- 使うには`cats.syntax.semigroup`をインポートする
+
+```scala
+import cats.instances.string._
+import cats.syntax.semigroup._
+
+"Hello" |+| "World" |+| Monoid[String].empty // "Hello World"
+```
 
 
 
