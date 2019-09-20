@@ -101,7 +101,7 @@ trait Monoid[A] extends Semigroup[A] {
 import cats.Monoid
 import cats.instances.string._
 
-Monoid[String].combine("Hello", "World") //Hello World
+Monoid[String].combine("Hello", " World") //Hello World
 Monoid[String].empty // ""
 ```
 
@@ -123,14 +123,24 @@ Monoid[Option[Int]].combine(Option(10), Option(20)) // Some(30)
 import cats.instances.string._
 import cats.syntax.semigroup._
 
-"Hello" |+| "World" |+| Monoid[String].empty // "Hello World"
+"Hello" |+| " World" |+| Monoid[String].empty // "Hello World"
 ```
 
+## Applications of Monoids
+### Big Data
+- SparkやHadoopのようなマシンをまたがり、フォールトトレランスかつスケーラブルな分散データ分析Big Dataのアプリケーションでは、各マシンは計算結果の一部を返すので、最終的にそれらを組み合わせる(combine)必要があるが、ほとんどの場合これはモノイドと見做すことができる
+  - サイトのトータルビジターの計算なら`Int`、ユニークユーザーなら`Set[User]`、99%-95%のレスポンスタイムなら`QTree`のデータ型のモノイドで計算できる
+- 大規模データセットに対する分析はほとんどがモノイドであるため、このアイデアで表現力豊かで強力な分析システムを構築できる
+  - Twitterの[Algebird](https://github.com/twitter/algebird)や[Summingbird](https://github.com/twitter/summingbird)はこれを行った
 
-
-
-
-
+### Distributed Systems
+- 分散システムでは異なるマシンが異なるデータの見方で終わる可能性がある
+  - 例えば、あるマシンが他のマシンが受け取らなかったアップデートを受信する可能性がある
+- このようなマシン間のデータ差分は、これ以上更新がなければ同じデータを保持していることになる
+- これら結果整合性と呼ばれる(分散システム間で最終的にデータを同じにすること)
+- 特定のデータ型は結果整合性の調整をサポートする。これらは[可換複製データ型(CRDT)](https://qiita.com/everpeace/items/bb73ec64d3e682279d26)と呼ばれる
+- CRDTにおいて重要な操作は2つのインスタンスをマージする機能であり、その結果両方のインスタンスの情報がキャプチャされる
+- この2つのインスタンスをマージする機能はモノイドインスタンスをもつことに依存している
 
 
 
