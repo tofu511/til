@@ -85,10 +85,33 @@ func(123) // "248.0!"
 // 引数が与えられた時点で操作が順番に実行される
 ```
   
-  
+## Definition of a Functor
+- Functorとは順序づけの計算をカプセル化したもの。正式には `F[A]`型に`(A => B) => F[B]`を行う`map`がついたもの
+- Catsでの定義は以下の通り
 
+```scala
+package cats
 
+import scala.language.higherKinds
 
+trait Functor[F[_]] {
+  def map[A, B](fa: F[A])(f: A => B): F[B]
+}
+```
+
+- `F[_]`というシンタックスはこの後の型コンストラクタと高カインド型で扱う
+- Functorでは操作を1つずつ呼んでも、1つの関数として合成しても、同じセマンティックスを保証するために守らないといけない法則が2つある
+  - Indentity
+    - mapをidentity function(恒等写像: 同じ値を常にそのまま返すようなmapのこと)で呼んだときは何もしない
+    - `fa.map(a => a) == fa`
+  - Composition
+    - 関数f,gのmappingはfの後にgをmappingするのと同じになる
+    - `fa.map(g(f(_))) == fa.map(f).map(g)`
+
+    
+    
+    
+    
 
 
 
