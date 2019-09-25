@@ -108,12 +108,28 @@ trait Functor[F[_]] {
     - 関数f,gのmappingはfの後にgをmappingするのと同じになる
     - `fa.map(g(f(_))) == fa.map(f).map(g)`
 
-    
-    
-    
-    
 
+## Aside: Higher Kinds and Type Constructors
+- カインドは型のための型のようなもので、型にある「穴」の数を表す
+- Listは「穴」が1つの型コンストラクタ
+  - 「穴」に型を入れることで`List[Int]`や`List[A]`を作っている
+- ややこしいが、`List`は型コンストラクタで`List[A]`は型である
+- Scalaでは、型コンストラクタにアンダースコアを使う
 
+```scala
+class MyClass[F[_]] {}
+```
 
+## The Functor Type Class
+- Catsでは`cats.Functor`をインポートする
+- Functorは`A => B`の関数を`F[A] => F[B]`に変換する`lift`メソッドも提供する
 
+```scala
+val list = List(1,2,3)
+Functor[List].map(list)(_ * 2) // List(2, 4, 6)
+
+val func = (x: Int) => x + 1
+val func2 = Functor[Option].lift(func) // Option[Int] => Option[Int]
+func2(Option(2)) // Some(3)
+```
 
