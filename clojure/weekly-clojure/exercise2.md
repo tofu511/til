@@ -59,3 +59,15 @@
   (= (apply str (reverse value)) value)
   )
 ```
+
+### Fibonacci Sequence
+```clojure
+(def fib-seq
+ (lazy-cat [0 1] (map + (rest fib-seq) fib-seq)))
+
+(defn fib [n]
+ (take n fib-seq))
+```
+
+#### 参考資料
+- [lazy-seq in Clojure (翻訳)](https://medium.com/@11Takanori/lazy-seq-in-clojure-%E7%BF%BB%E8%A8%B3-8fba0ebcb6af)
