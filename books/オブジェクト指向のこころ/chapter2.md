@@ -66,6 +66,20 @@ classDiagram
     GasStation <.. Car
     Car *-- Tire
 ```
+---
+- あるクラスが他のクラスを保持する場合、カーディナリティという、クラス間の個数を定義する
+    - 下記の例だとAircraftがある場合、0もしくは1つのAirportに保持されているということを示している
+    - Airportがある場合、0 ~ nのAircraftを保持できる
+```mermaid
+classDiagram
+    Airport "0..1" o-- "0..n" Aircraft
+    Aircraft <|-- Jet
+    Aircraft <|-- Helicopter
+```
+```mermaid
+classDiagram
+    Car "1" *-- "4..5" Tire
+```
 
 ## mermaidの動かし方
 - [mermaid](https://mermaid-js.github.io/mermaid/#/classDiagram)
