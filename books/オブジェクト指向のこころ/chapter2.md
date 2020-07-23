@@ -25,7 +25,7 @@ classDiagram
 ---
 ```mermaid
 classDiagram
-classA --|> classB : 継承
+classA --|> classB : 継承
 classC --* classD : コンポジション
 classE --o classF : 集約
 classG --> classH : 関連
