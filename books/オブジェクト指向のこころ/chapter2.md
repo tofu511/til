@@ -16,6 +16,8 @@ classDiagram
     Square : #calc()
     Square : -length: Double
 ```
+![](https://mermaid.ink/img/eyJjb2RlIjoiY2xhc3NEaWFncmFtXG4gICAgY2xhc3MgU3F1YXJlXG4gICAgU3F1YXJlIDogK2Rpc3BsYXkoKVxuICAgIFNxdWFyZSA6ICNjYWxjKClcbiAgICBTcXVhcmUgOiAtbGVuZ3RoOiBEb3VibGUiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)
+
 - `+`記号はメソッドがpublicであることを示している
     - `display()`メソッドは`Square`クラス以外からも呼ぶことができる
 - `-`記号はデータメンバがprivateであることを示している
@@ -30,8 +32,8 @@ classG --> classH : 関連
 classI -- classJ : リンク
 classK ..> classL : 依存
 classM ..|> classN : 実現 
-
 ```
+![](https://mermaid.ink/img/eyJjb2RlIjoiY2xhc3NEaWFncmFtXG5jbGFzc0EgLS18PiBjbGFzc0IgOiBcYue2meaJv1xuY2xhc3NDIC0tKiBjbGFzc0QgOiDjgrPjg7Pjg53jgrjjgrfjg6fjg7NcbmNsYXNzRSAtLW8gY2xhc3NGIDog6ZuG57SEXG5jbGFzc0cgLS0-IGNsYXNzSCA6IOmWoumAo1xuY2xhc3NJIC0tIGNsYXNzSiA6IOODquODs-OCr1xuY2xhc3NLIC4uPiBjbGFzc0wgOiDkvp3lrZhcbmNsYXNzTSAuLnw-IGNsYXNzTiA6IOWun-ePviBcbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
 
 |  &nbsp;&nbsp;用語&nbsp;&nbsp;    |  解説  |
 | ---- | ---- |
@@ -51,6 +53,7 @@ classDiagram
     Shape <|-- Line
     Shape <|-- Square
 ```
+![](https://mermaid.ink/img/eyJjb2RlIjoiY2xhc3NEaWFncmFtXG4gICAgU2hhcGUgPHwtLSBQb2ludFxuICAgIFNoYXBlIDx8LS0gTGluZVxuICAgIFNoYXBlIDx8LS0gU3F1YXJlIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 ----
 - あるクラスが他のクラスを保持している(`has-a関係`)の例
 ```mermaid
@@ -59,6 +62,7 @@ classDiagram
     Aircraft <|-- Jet
     Aircraft <|-- Helicopter
 ```
+![](https://mermaid.ink/img/eyJjb2RlIjoiY2xhc3NEaWFncmFtXG4gICAgQWlycG9ydCBvLS0gQWlyY3JhZnRcbiAgICBBaXJjcmFmdCA8fC0tIEpldFxuICAgIEFpcmNyYWZ0IDx8LS0gSGVsaWNvcHRlciIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
 ----
 - あるクラスが他のクラスを使用している(`use-a関係`)の例
 ```mermaid
@@ -66,6 +70,7 @@ classDiagram
     GasStation <.. Car
     Car *-- Tire
 ```
+![](https://mermaid.ink/img/eyJjb2RlIjoiY2xhc3NEaWFncmFtXG4gICAgR2FzU3RhdGlvbiA8Li4gQ2FyXG4gICAgQ2FyICotLSBUaXJlIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 ---
 - あるクラスが他のクラスを保持する場合、カーディナリティという、クラス間の個数を定義する
     - 下記の例だとAircraftがある場合、0もしくは1つのAirportに保持されているということを示している
@@ -76,10 +81,12 @@ classDiagram
     Aircraft <|-- Jet
     Aircraft <|-- Helicopter
 ```
+![](https://mermaid.ink/img/eyJjb2RlIjoiY2xhc3NEaWFncmFtXG4gICAgQWlycG9ydCBcIjAuLjFcIiBvLS0gXCIwLi5uXCIgQWlyY3JhZnRcbiAgICBBaXJjcmFmdCA8fC0tIEpldFxuICAgIEFpcmNyYWZ0IDx8LS0gSGVsaWNvcHRlciIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
 ```mermaid
 classDiagram
     Car "1" *-- "4..5" Tire
 ```
+![](https://mermaid.ink/img/eyJjb2RlIjoiY2xhc3NEaWFncmFtXG4gICAgQ2FyIFwiMVwiICotLSBcIjQuLjVcIiBUaXJlIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
 ## mermaidの動かし方
 - [mermaid](https://mermaid-js.github.io/mermaid/#/classDiagram)

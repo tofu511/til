@@ -21,6 +21,7 @@ classDiagram
     AnimalMovement <| -- AnimalFly
     AnimalMovement <| -- AnimalWalk
 ```
+![](https://mermaid.ink/img/eyJjb2RlIjoiY2xhc3NEaWFncmFtXG4gICAgY2xhc3MgQW5pbWFsIHtcbiAgICAgICAgLUFuaW1hbE1vdmVtZW50IG15TW92ZW1lbnRcbiAgICB9XG5cbiAgICBjbGFzcyBBbmltYWxNb3ZlbWVudFxuICAgIGNsYXNzIEFuaW1hbEZseVxuICAgIGNsYXNzIEFuaW1hbFdhbGtcblxuICAgIEFuaW1hbCBvLS0gQW5pbWFsTW92ZW1lbnRcbiAgICBBbmltYWxNb3ZlbWVudCA8fCAtLSBBbmltYWxGbHlcbiAgICBBbmltYWxNb3ZlbWVudCA8fCAtLSBBbmltYWxXYWxrIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
 ## メモ
 - 実装ではなく動機に着目するというのはデザインパターンで何度も出てくるスローガン
