@@ -105,6 +105,7 @@ classDiagram
     class LowResClient
     class HighResClient
 ```
+![](https://mermaid.ink/img/eyJjb2RlIjoiY2xhc3NEaWFncmFtXG4gICAgQ2xpZW50IDx8LS0gTG93UmVzQ2xpZW50XG4gICAgQ2xpZW50IDx8LS0gSGlnaFJlc0NsaWVudFxuXG4gICAgY2xhc3MgQ2xpZW50IHtcbiAgICAgICAgLWRkOiBEaXNwbGF5RHJpdmVyXG4gICAgICAgIC1wZDogUHJpbnRlckRyaXZlclxuICAgIH1cbiAgICBjbGFzcyBMb3dSZXNDbGllbnRcbiAgICBjbGFzcyBIaWdoUmVzQ2xpZW50IiwibWVybWFpZCI6eyJ0aGVtZSI6ImZvcmVzdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)
 
 #### 問題点
 - 組み合わせ爆発が起きる
