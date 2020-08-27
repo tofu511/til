@@ -1,0 +1,49 @@
+Browser	ClientOS	Plugin	Server	ServerOS
+IE5.0	Win ME	Real Player	Apache	Linux
+Netscape7.0	Win NT	None	WebLogic	Win 2000
+Netscape6.0	Win98	None	IIS	Win Nt
+IE5.0	Win XP	Media Player	WebLogic	Win Nt
+IE6.0	Win95	Media Player	IIS	Linux
+Netscape6.0	Win95	Media Player	Apache	Win 2000
+Opera7	Win98	Real Player	WebLogic	Linux
+Opera7	Win NT	Real Player	Apache	Win Nt
+IE6.0	Win XP	None	Apache	Win 2000
+IE6.0	Win ME	None	WebLogic	Win Nt
+IE5.5	Win ME	Real Player	IIS	Win 2000
+IE5.5	Win95	None	WebLogic	Win Nt
+Opera7	Win95	None	IIS	Win 2000
+Mozilla1.1	Win95	None	WebLogic	Linux
+Netscape7.0	Win95	Real Player	IIS	Linux
+Netscape7.0	Win 2000	Media Player	Apache	Win Nt
+Netscape6.0	Win XP	Real Player	WebLogic	Linux
+Mozilla1.1	Win XP	Real Player	IIS	Win 2000
+IE5.0	Win98	Media Player	IIS	Win 2000
+Netscape7.0	Win ME	Media Player	WebLogic	Win Nt
+IE6.0	Win98	Real Player	Apache	Win Nt
+Opera7	Win 2000	None	WebLogic	Linux
+Mozilla1.1	Win98	Media Player	Apache	Win Nt
+Opera7	Win XP	Media Player	WebLogic	Win Nt
+Mozilla1.1	Win ME	None	Apache	Win Nt
+Netscape6.1	Win95	Media Player	Apache	Linux
+Netscape6.1	Win98	Real Player	IIS	Win 2000
+IE5.0	Win NT	None	IIS	Linux
+Mozilla1.1	Win NT	Media Player	IIS	Win 2000
+Netscape6.0	Win ME	Media Player	Apache	Linux
+Mozilla1.1	Win 2000	Real Player	IIS	Win 2000
+Netscape6.1	Win NT	None	WebLogic	Win Nt
+IE5.5	Win 2000	Media Player	Apache	Linux
+Netscape7.0	Win XP	None	Apache	Linux
+IE5.5	Win XP	Real Player	WebLogic	Win Nt
+Netscape6.0	Win NT	Media Player	WebLogic	Win Nt
+Netscape6.1	Win 2000	None	Apache	Linux
+IE6.0	Win NT	None	IIS	Win Nt
+Netscape7.0	Win98	Media Player	IIS	Win 2000
+Netscape6.1	Win XP	Real Player	Apache	Win Nt
+Netscape6.0	Win 2000	Media Player	WebLogic	Linux
+IE5.5	Win98	Real Player	Apache	Win 2000
+Netscape6.1	Win ME	None	IIS	Win 2000
+IE5.5	Win NT	None	Apache	Linux
+IE5.0	Win95	Real Player	IIS	Win 2000
+IE5.0	Win 2000	None	IIS	Win Nt
+Opera7	Win ME	None	Apache	Win Nt
+IE6.0	Win 2000	None	WebLogic	Win 2000
